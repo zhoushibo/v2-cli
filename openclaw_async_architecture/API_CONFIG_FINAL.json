@@ -1,0 +1,169 @@
+{
+  "api_configs": {
+    "zhipu": {
+      "name": "智谱 glm4.7-flash",
+      "provider": "zhipu",
+      "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+      "api_key": "c744282c23b74fa9bf7a2be68a8656b7.w4rIakRo0j4tWqpO",
+      "model": "glm-4-flash",
+      "context_window": 200000,
+      "max_rpm": "unknown",
+      "max_concurrent": 1,
+      "enable_thinking": true,
+      "avg_latency": 1.03,
+      "tier": "Tier2",
+      "note": "速度最快（1.03秒），200K上下文，但并发只有1"
+    },
+    "hunyuan": {
+      "name": "混元 (腾讯)",
+      "provider": "tencent",
+      "url": "https://api.hunyuan.cloud.tencent.com/v1/chat/completions",
+      "api_key": "sk-7xGaNZwkW0CLZNeT8kZrJv2hiHpU47wzS8XVhOagKKjLyb2i",
+      "model": "hunyuan-lite",
+      "context_window": 262144,
+      "max_rpm": "unlimited",
+      "max_concurrent": 5,
+      "enable_thinking": false,
+      "avg_latency": 1.2,
+      "tier": "Tier2",
+      "note": "256k上下文，无RPM限制，并发5，大批量任务最优"
+    },
+    "nvidia1": {
+      "name": "英伟达1 (主账户)",
+      "provider": "nvidia",
+      "url": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "api_key": "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",
+      "model": "z-ai/glm4.7",
+      "context_window": 128000,
+      "max_rpm": 40,
+      "max_concurrent": 5,
+      "enable_thinking": true,
+      "avg_latency": 7.17,
+      "tier": "Tier1",
+      "note": "思考模式 enabled，复杂推理最优"
+    },
+    "nvidia2": {
+      "name": "英伟达2 (备用)",
+      "provider": "nvidia",
+      "url": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "api_key": "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",
+      "model": "z-ai/glm4.7",
+      "context_window": 128000,
+      "max_rpm": 40,
+      "max_concurrent": 5,
+      "enable_thinking": true,
+      "avg_latency": 2.68,
+      "tier": "Tier1",
+      "note": "思考模式 enabled，速度质量平衡"
+    },
+    "siliconflow": {
+      "name": "SiliconFlow (embeddings)",
+      "provider": "siliconflow",
+      "url": "https://api.siliconflow.cn/v1/embeddings",
+      "api_key": "sk-kvqpfofevcxloxexrrjovsjzpnwsvhpwrbxkwjydwbjyufjf",
+      "model": "BAAI/bge-large-zh-v1.5",
+      "max_rpm": 5,
+      "daily_tokens": 500000,
+      "avg_latency": 0.1,
+      "type": "embeddings",
+      "note": "仅用于embeddings，0.10秒超快"
+    },
+    "nvidia3": {
+      "name": "英伟达 3 (第 3 备用)",
+      "provider": "nvidia",
+      "url": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "api_key": "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",
+      "model": "z-ai/glm4.7",
+      "context_window": 128000,
+      "max_rpm": 40,
+      "max_concurrent": 5,
+      "enable_thinking": true,
+      "avg_latency": "待测试",
+      "tier": "Tier1",
+      "note": "思考模式 enabled，第 3 备用"
+    }
+  },
+  "performance_ranking": {
+    "fastest": "zhipu",
+    "fastest_avg_latency": 1.03,
+    "second_fastest": "hunyuan",
+    "second_fastest_latency": 1.2,
+    "third_fastest": "nvidia2",
+    "third_fastest_latency": 2.68,
+    "slowest": "nvidia1",
+    "slowest_avg_latency": 7.17,
+    "speed_ratio": 7.0
+  },
+  "concurrent_capability": {
+    "zhipu": 1,
+    "hunyuan": 5,
+    "nvidia1": 5,
+    "nvidia2": 5,
+    "nvidia_pool": 10,
+    "total": 16
+  },
+  "context_comparison": {
+    "hunyuan": 262144,
+    "zhipu": 200000,
+    "nvidia": 128000
+  },
+  "recommendations": {
+    "fastest_response": "zhipu",
+    "bulk_tasks": "hunyuan",
+    "complex_reasoning": "nvidia1",
+    "large_context_256k": "hunyuan",
+    "large_context_200k": "zhipu",
+    "embeddings": "siliconflow",
+    "load_balancing": {
+      "hunyuan": 0.5,
+      "nvidia1": 0.2,
+      "nvidia2": 0.2,
+      "zhipu": 0.1
+    },
+    "note": "混元是高并发最优（无RPM），智谱是速度最快但并发限制1"
+  },
+  "test_results": {
+    "test_time": "2026-02-16 00:48-01:17",
+    "zhipu": {
+      "simple": 0.84,
+      "complex": 1.22,
+      "avg": 1.03,
+      "tokens": {
+        "simple": 22,
+        "complex": 43
+      }
+    },
+    "hunyuan": {
+      "simple": 1.18,
+      "complex": 1.22,
+      "avg": 1.2,
+      "tokens": {
+        "simple": 36,
+        "complex": 57
+      }
+    },
+    "nvidia2": {
+      "simple": 2.68,
+      "complex": 9.58,
+      "avg": 2.68,
+      "tokens": {
+        "simple": 158
+      }
+    },
+    "nvidia1": {
+      "simple": 4.76,
+      "complex": 9.58,
+      "avg": 7.17,
+      "tokens": {
+        "simple": 138,
+        "complex": 986
+      }
+    },
+    "siliconflow": {
+      "latency": 0.1,
+      "dimensions": 1024
+    }
+  },
+  "updated_at": "2026-02-16T01:17:00+08:00",
+  "version": "final"
+}
