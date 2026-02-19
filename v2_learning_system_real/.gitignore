@@ -1,0 +1,77 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.venv
+venv/
+ENV/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backups
+*.bak
+*.backup
+*.old
+
+# Test files (keep tests/ directory but exclude standalone test scripts)
+test_*.py
+check_*.py
+
+# Data
+data/
+projects/
+
+# Memory (handled separately)
+../memory/*.md
+../MEMORY.md
+../STATE.json
+
+# Other projects
+../project_manager/
+../PROJECT_LIST.md
+../PROJECT_PROGRESS_AUDIT.md
+../SESSION_HANDOVER.md
+../V2_KB_INTEGRATION_STATUS.md
+../pm_*.py
+../test_*.md
