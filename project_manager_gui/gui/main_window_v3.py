@@ -63,6 +63,28 @@ class MainWindow(QMainWindow):
         
         # Dashboard tab
         self.dashboard = Dashboard(self.health_checker)
+        # Configure default services for dashboard
+        default_services = {
+            "Gateway": {
+                "type": "websocket",
+                "port": 8001,
+                "url": "ws://127.0.0.1:8001",
+                "description": "统一 AI Provider Gateway (6 个 Provider)"
+            },
+            "Knowledge Base": {
+                "type": "web",
+                "port": 8501,
+                "url": "http://localhost:8501",
+                "description": "知识库管理系统 (ChromaDB + FTS5)"
+            },
+            "V2 Learning": {
+                "type": "module",
+                "port": None,
+                "url": None,
+                "description": "V2 学习系统 (3 Worker 并发)"
+            }
+        }
+        self.dashboard.configure_services(default_services)
         self.tabs.addTab(self.dashboard, "📊 仪表盘")
         
         # Service Manager tab
